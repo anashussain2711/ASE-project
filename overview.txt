@@ -1,0 +1,88 @@
+-------------------FRONTEND-----------------
+
+Folder Structure
+
+/src
+  ├── components
+  │   ├── OrderList.jsx
+  │   ├── OrderForm.jsx
+  ├── services
+  │   ├── apiService.js
+  │   ├── OrderFactory.js
+  ├── App.jsx
+  ├── index.js
+
+
+1) Singleton
+
+singleton pattern is being used in frontend/src/services/apiService.js
+It ensures ApiService has only one instance across the app.
+Any component using apiService gets the same instance, preventing redundant API configurations.
+
+2) Factory
+
+Factory pattern is being used in frontend/src/services/OrderFactory.js
+Instead of creating orders manually in different parts of the app ({ menuItem, price, status }), the OrderFactory.createOrder() method encapsulates order creation.
+This ensures consistency and allows modifications (like adding timestamps) without changing every component that creates orders.
+
+Summary:
+✔ Singleton (apiService.js) → Ensures a single API handler instance.
+✔ Factory (OrderFactory.js) → Standardizes object creation for orders.
+
+
+
+
+
+-------------------BACKEND-----------------
+
+Folder Structure
+
+backend/
+│── node_modules/
+│── src/
+│   ├── controllers/
+│   │   ├── orderController.js
+│   ├── models/
+│   │   ├── orderModel.js
+│   ├── routes/
+│   │   ├── orderRoutes.js
+│   ├── config/
+│   │   ├── database.js
+│   ├── app.js
+│── server.js
+│── package.json
+
+
+backend structure is following the MVC (Model-View-Controller) design pattern.
+
+MVC is a structured pattern that separates concerns into three parts:
+- Model (`models/orderModel.js`) → Defines the database structure & logic.  
+- Controller (`controllers/orderController.js`) → Handles business logic & processes requests.  
+- Routes (`routes/orderRoutes.js`) → Maps API endpoints to the controller methods.  
+
+How It Applies to Our Backend:
+✔ Model (`models/orderModel.js`)
+   - Manages data and interacts with the database.  
+   - Example: Defines the order schema and CRUD operations.
+
+✔ Controller (`controllers/orderController.js`) 
+   - Handles business logic and calls the model.  
+   - Example: Processes API requests, calls the model, and sends responses.
+
+✔ Routes (`routes/orderRoutes.js`)
+   - Maps API endpoints to controller functions.  
+   - Example: `POST /orders` routes to `orderController.createOrder()`.  
+
+✔ Config (`config/database.js`) 
+   - Centralizes database connection logic, making it reusable.  
+
+✔ App (`app.js`) & Server (`server.js`)
+   - `app.js` sets up the Express app.  
+   - `server.js` starts the server.  
+
+---
+
+Summary:
+✔ MVC (Model-View-Controller) → Separates concerns for better maintainability.  
+
+Your backend correctly follows MVC, making it scalable and structured! 🚀
