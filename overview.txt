@@ -22,6 +22,7 @@ Any component using apiService gets the same instance, preventing redundant API 
 2) Factory
 
 Factory pattern is being used in frontend/src/services/OrderFactory.js
+If OrderFactory.js is responsible for creating order objects in a structured way, then it's a Factory.
 Instead of creating orders manually in different parts of the app ({ menuItem, price, status }), the OrderFactory.createOrder() method encapsulates order creation.
 This ensures consistency and allows modifications (like adding timestamps) without changing every component that creates orders.
 
